@@ -644,8 +644,12 @@ public class CoreMessage extends RefCountMessage implements ICoreMessage {
 
    @Override
    public int getEncodeSize() {
-      checkEncode();
-      return buffer == null ? -1 : buffer.writerIndex();
+      int encodeSize = -1;
+      if (buffer != null)  {
+         checkEncode();
+         encodeSize = buffer.writerIndex();
+      }
+      return encodeSize;
    }
 
    @Override
